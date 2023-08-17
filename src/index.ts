@@ -7,24 +7,27 @@ const app = express();
 const port = 3000;
 
 app.use('/api', route);
-app.use('./images/originalImage', express.static(path.join(__dirname, 'originalImage')));
-app.use('./images/modifiedImage', express.static(path.join(__dirname, 'modifiedImage')));
+app.use('./images/full', express.static(path.join(__dirname, 'full')));
+app.use('./images/thumbnail', express.static(path.join(__dirname, 'thumbnail')));
+
 
 app.get('/resize', async (req, res) => {
-  const image_url = './images/originalImage/palmtunnel.jpg';
-  const width = parseInt(req.query.width as string);
-  const height = parseInt(req.query.height as string);
+  const  url = './images/full/palmtunnel.jpg';
+  let width = parseInt(req.query.width as string) as number; 
+  let height = parseInt(req.query.height as string) as number;
   
   try {
-    const buffer = await modifiedImage(image_url, width, height);
+    const buffer = await modifiedImage(url, width, height);
     res.set('Content-Type', 'image/jpeg');
     res.send(buffer);
-  } catch (error) {
+  } 
+  catch (error) {
     console.error(error);
     res.status(200).send('Internal server error');
   }
 });
 
+// start the express server
 app.listen(port, () => {
   console.log(`server started at localhost:${port}/`);
   // console.log(`server started at localhost:${port}/resize?images/palmtunnel&width=500&height=500`);

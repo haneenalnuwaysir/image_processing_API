@@ -19,14 +19,14 @@ const sharp_1 = __importDefault(require("./sharp"));
 const app = (0, express_1.default)();
 const port = 3000;
 app.use('/api', indexRoute_1.default);
-app.use('./images/originalImage', express_1.default.static(path_1.default.join(__dirname, 'originalImage')));
-app.use('./images/modifiedImage', express_1.default.static(path_1.default.join(__dirname, 'modifiedImage')));
+app.use('./images/full', express_1.default.static(path_1.default.join(__dirname, 'full')));
+app.use('./images/thumbnail', express_1.default.static(path_1.default.join(__dirname, 'thumbnail')));
 app.get('/resize', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const image_url = './images/originalImage/palmtunnel.jpg';
-    const width = parseInt(req.query.width);
-    const height = parseInt(req.query.height);
+    const url = './images/full/palmtunnel.jpg';
+    let width = parseInt(req.query.width);
+    let height = parseInt(req.query.height);
     try {
-        const buffer = yield (0, sharp_1.default)(image_url, width, height);
+        const buffer = yield (0, sharp_1.default)(url, width, height);
         res.set('Content-Type', 'image/jpeg');
         res.send(buffer);
     }
@@ -35,6 +35,7 @@ app.get('/resize', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(200).send('Internal server error');
     }
 }));
+// start the express server
 app.listen(port, () => {
     console.log(`server started at localhost:${port}/`);
     // console.log(`server started at localhost:${port}/resize?images/palmtunnel&width=500&height=500`);

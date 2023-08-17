@@ -1,14 +1,14 @@
 import fs from 'fs';
 
-it('Should expect original image to exist', (done) => {
-  fs.access('./images/originalImage/palmtunnel.jpg', (err) => {
+it('Should expect full image to exist', (done) => {
+  fs.access('./images/full/palmtunnel.jpg', (err) => {
     expect(err).toBeNull();
     done();
   });
 });
 
-it('Should expect modified image to exist', (done) => {
-  fs.access('./images/modifiedImage/palmtunnel_modified.jpg', (err) => {
+it('Should expect thumbnail image to exist', (done) => {
+  fs.access('./images/thumbnail/palmtunnel_modified.jpg', (err) => {
     expect(err).toBeNull();
     done();
   });

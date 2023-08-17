@@ -9,9 +9,9 @@
     "build": "npx tsc && nodemon src/index.ts",
     "test": "npx tsc && jasmine",
     "jasmine": "jasmine",
-    "start:prod": "npm run build && node dist/index.js",
-    "start": "nodemon --watch './**/*.ts' --exec 'ts-node' ./src/index.ts"
-
+    "start": "nodemon src/index.ts",
+    "start:production": "npm run build && node dist/index.js"
+   
   },
   "author": "HaneenAlnuwaysir",
   "license": "ISC",
