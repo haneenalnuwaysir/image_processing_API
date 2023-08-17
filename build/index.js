@@ -30,11 +30,12 @@ app.get('/resize', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.set('Content-Type', 'image/jpeg');
         res.send(buffer);
     }
-    catch (err) {
-        console.error(err);
+    catch (error) {
+        console.error(error);
         res.status(200).send('Internal server error');
     }
 }));
 app.listen(port, () => {
-    console.log(`server started at localhost:${port}/resize?images/palmtunnel&width=500&height=500`);
+    console.log(`server started at localhost:${port}/`);
+    // console.log(`server started at localhost:${port}/resize?images/palmtunnel&width=500&height=500`);
 });
