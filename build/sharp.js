@@ -13,9 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sharp_1 = __importDefault(require("sharp"));
-const modifiedImage = (url, width, height) => __awaiter(void 0, void 0, void 0, function* () {
-    const buffer = yield (0, sharp_1.default)(url).resize(width, height).toBuffer();
-    yield (0, sharp_1.default)(buffer).toFile('./images/thumbnail/palmtunnel_modified.jpg');
-    return buffer;
+const path_1 = __importDefault(require("path"));
+const modifiedImage = (filename, width, height) => __awaiter(void 0, void 0, void 0, function* () {
+    const pathOfFull = path_1.default.join(__dirname, '../images/full', `${filename}.jpg`);
+    const pathOfThumbnail = path_1.default.join(__dirname, '../images/thumbnail', `${filename}-${width}-${height}.jpg`);
+    yield (0, sharp_1.default)(pathOfFull)
+        .resize(width, height)
+        .toFile(pathOfThumbnail);
 });
 exports.default = modifiedImage;

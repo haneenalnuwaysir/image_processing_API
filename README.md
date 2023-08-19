@@ -11,9 +11,9 @@ Image Processing API is about resize the width & height for image in URL and sho
 ```
 ####  Then use the following url :
 ```bash 
-   http://localhost:3000/resize?images/palmtunnel&width=500&height=500
+   http://localhost:3000/api/images?filename=palmtunnel&width=200&height=200
 ```
- #### When you modify the width and height, the image processing code will resize the image accordingly and save the resized image to the specified file path ```(images/thumbnail/palmtunnel_modified.jpg)```. The new image file will reflect the changes made to the width and height.
+ #### When you modify the width and height, the image processing code will resize the image accordingly and save the resized image to the specified file path ```(images/thumbnail/palmtunnel.jpg ```. The new image file will reflect the changes made to the width and height.
 ## Author
 
 - [@haneenalnuwaysir](https://github.com/haneenalnuwaysir)

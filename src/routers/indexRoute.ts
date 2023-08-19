@@ -1,8 +1,14 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import path from 'path';
+import middlewareImage from '../middleware'
 
 const route = express.Router();
 
-route.get('/', async (req: Request, res: Response): Promise<void> => {
-  res.send('Route');
+route.get('/images', middlewareImage , (req, res)  => {
+  const { filename, width, height } = req.query;
+  const imageFilepath = path.join(__dirname, '../../images/thumbnail', `${filename}-${width}-${height}.jpg`);
+  
+  res.sendFile(imageFilepath);
+  // res.send('Main api route ');
 });
 export default route;
