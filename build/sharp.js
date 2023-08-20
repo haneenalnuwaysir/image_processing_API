@@ -14,11 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sharp_1 = __importDefault(require("sharp"));
 const path_1 = __importDefault(require("path"));
-const modifiedImage = (filename, width, height) => __awaiter(void 0, void 0, void 0, function* () {
-    const pathOfFull = path_1.default.join(__dirname, '../images/full', `${filename}.jpg`);
-    const pathOfThumbnail = path_1.default.join(__dirname, '../images/thumbnail', `${filename}-${width}-${height}.jpg`);
-    yield (0, sharp_1.default)(pathOfFull)
-        .resize(width, height)
-        .toFile(pathOfThumbnail);
+const modifiedImage = (filename, width, height, ext) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const pathOfFull = path_1.default.join(__dirname, '../images/full', `${filename}.jpg`);
+        const pathOfThumbnail = path_1.default.join(__dirname, '../images/thumbnail', `${filename}-${width}-${height}.jpg`);
+        yield (0, sharp_1.default)(pathOfFull)
+            .resize(width, height)
+            .toFile(pathOfThumbnail);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
 });
 exports.default = modifiedImage;

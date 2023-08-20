@@ -19,7 +19,7 @@ describe('Test the image sharp function', () => {
     });
 
     it('Should expect thumbnail image to exist', async () => {
-      await modifiedImage(filename, width, height );
+      await modifiedImage(filename, width, height , "jpg");
       expect(fs.existsSync(thumbnailImage)).toBeTruthy();  
       })
 })
